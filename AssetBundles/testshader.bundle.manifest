@@ -1,0 +1,24 @@
+ManifestFileVersion: 0
+UnityVersion: 6000.2.1f1
+CRC: 3620441898
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 7006edcc7affc4cc14a615f7b642a0b0
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 4afb0d898c1c22a5e88248733bd69457
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: fabf1fd89ebb8bb569e660d35bf028a6
+HashAppended: 0
+ClassTypes:
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/TestShaderGraph.shadergraph
+- Assets/TestShaderMat.mat
+Dependencies: []

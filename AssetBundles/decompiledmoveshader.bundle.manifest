@@ -1,0 +1,26 @@
+ManifestFileVersion: 0
+UnityVersion: 6000.2.1f1
+CRC: 707487901
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 0d1910eb6d0cef4ac22ccee23e517f60
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 4946d9aa1a4c0871d75943c6e3d5e7c6
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: a2d86ce71fb72e33ffd035996d956f34
+HashAppended: 0
+ClassTypes:
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/RUMBLE_Move_Toon.shader
+- Assets/TestMoveMat.mat
+Dependencies: []

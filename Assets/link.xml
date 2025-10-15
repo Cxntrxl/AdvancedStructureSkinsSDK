@@ -1,0 +1,5 @@
+<linker>
+  <assembly fullname="UnityEngine.CoreModule">
+    <type fullname="UnityEngine.TextAsset" preserve="all"/>
+  </assembly>
+</linker>
