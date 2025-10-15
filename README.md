@@ -1,12 +1,12 @@
 # Advanced Structure Skins
-Compatible with skins created for Buttered Lily's Skin Manager.
+Compatible with skins created for ButteredLily's Skin Manager.
 
 Advanced Structure Skins allows users to create custom shaders for structures, providing creators with extreme flexibility, albeit also introducing additional complexity and potential incompatibilities.
 
 This mod *may* remove game functionality, including but not limited to visible grounded effects, grounded vertex offsets and on-collision structure shaking, depending which shaders are used (as these features are implemented in the shader and must be rebuilt by skin creators.)
 
 # For Users
-Skins are super easy to import and use! This mod uses the same format as existing skins, so it's essentially plug-and-play if you already have Buttered Lily's Skin Manager installed.
+Skins are super easy to import and use! This mod uses the same format as existing skins, so it's essentially plug-and-play if you already have ButteredLily's Skin Manager installed.
 
 For those who do not have it installed, here's the folder structure you'll want to create:
 ```
@@ -50,11 +50,11 @@ To reset a structure to the default game shader, you can simply set the respecti
 
 
 # For Developers
-First of all, I've exposed the CustomShaders API in the mod to make it super easy and fast to get the shaders from existing bundles located in the users' Skins folder. At the moment, the unity SDK only supports overrides targeting structures, but in the future I can probably implement a system for overrides based on GameObject names.
+First of all, I've exposed the CustomShaders API in the mod to make it super easy and fast to get the shaders from existing bundles located in the users' Skins folder. At the moment, the [SDK](https://github.com/Cxntrxl/AdvancedStructureSkinsSDK) only supports overrides targeting structures, but in the future I can probably implement a system for overrides based on GameObject names.
 
 Second of all, the meat and potatoes - How do you make your own shaders?
 
-There's a bunch of useful tools and example shaders in the SDK on my github. The most important of which is the **Shader Asset Bundle Builder**, which you can access via the Tools tab at the top of the window. It should be relatively straightforward to use if you already know your way around unity.
+There's a bunch of useful tools and example shaders in the [SDK available on github](https://github.com/Cxntrxl/AdvancedStructureSkinsSDK). The most important of which is the **Shader Asset Bundle Builder**, which you can access via the Tools tab at the top of the window. It should be relatively straightforward to use if you already know your way around unity.
 
 Next, creating shaders. To make them compatible with the game, you'll need to ensure some of your property names match the game's existing shaders. The most notable of which are:
 
@@ -76,4 +76,4 @@ The grounded effect is probably the most important part to implement in a shader
 
 You can include these functions in your HLSL shaders by adding `#include "Assets/ExampleShaders/Shaders/AdditionalFunctions/GroundMask.hlsl"` to your includes, or in your Shader Graphs by adding a `Custom Function` node and selecting the `GroundMask.hlsl` file from the AdditionalFunctions folder. Your `Custom Function` node will require a `Vector3` input taking in the Worldspace Position, 3 `float` inputs taking in the `_FloorHeight`, `_Stable` and a `Floor Height Offset`, as well as 1 `float` output, returning white for any surface above the floor. You can name the function either `GroundMask` or `GroundMaskGradient` depending on which format suits your needs.
 
-There's also a couple other simple shader examples in the SDK project which should help give some idea on how other shader properties are implemented - it's up to you how you use the tools provided.
+There's also a couple other simple shader examples in the [SDK](https://github.com/Cxntrxl/AdvancedStructureSkinsSDK) project which should help give some idea on how other shader properties are implemented - it's up to you how you use the tools provided.
