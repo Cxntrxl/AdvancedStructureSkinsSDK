@@ -12,4 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 059b394dc3b9e3d4f9f0b43cecd48445, type: 3}
   m_Name: OldStructureOverrides
   m_EditorClassIdentifier: Assembly-CSharp::MaterialPropertyOverrides
-  overrides: []
+  overrides:
+  - propertyName: _Tint
+    propertyType: 0
+    colorValue: {r: 0.8901961, g: 0.9137255, b: 0.9254902, a: 1}
+    floatValue: 0
+    intValue: 0
+    vectorValue: {x: 0, y: 0, z: 0, w: 0}
+    targetStructures: 0600000005000000

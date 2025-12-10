@@ -25,11 +25,15 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - Texture2D_2058E65A:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 3e80ddec95042fc4fa03677db296363f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_3812B1EC:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 3b056ee4c67af2a41a3cadaab1a9dcfa, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_8F187FEF:
+        m_Texture: {fileID: 2800000, guid: ec1ca221ddfe5364bb08ce97d463d736, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
@@ -60,6 +64,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Mat:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -74,6 +82,14 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture2DAsset_9c171858ecdc4e77b629a3f017b97161_Out_0_Texture2D:
+        m_Texture: {fileID: 2800000, guid: ec1ca221ddfe5364bb08ce97d463d736, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture2DAsset_a425e2e634304d40803f9747aa8925a6_Out_0_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 3e80ddec95042fc4fa03677db296363f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
