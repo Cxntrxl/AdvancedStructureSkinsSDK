@@ -14,11 +14,11 @@ float3 StructureVertOffsets(float3 worldPos, float floorHeight, float stable, fl
 {
     float3 sinPos = {
         sinWave(shakeAmount, shakeFrequency, _Time),
-        sinWave(shakeAmount, shakeFrequency, _Time),
-        sinWave(shakeAmount, shakeFrequency, _Time)
+        sinWave(shakeAmount, shakeFrequency, _Time * 0.3),
+        sinWave(shakeAmount, shakeFrequency, _Time * 0.7)
     };
 
-    float3 shakePos = worldPos + (sinPos * shake);
+    float3 shakePos = worldPos + (sinPos * shake * 0.5);
     
     float samplePoint =  clamp(shakePos.y - (floorHeight + offset), 0.0, 1.0);
     float mask = lerp(1.0 - stable, 1.0, samplePoint);

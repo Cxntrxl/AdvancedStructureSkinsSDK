@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-2775924842526688796
+--- !u!114 &-1891823049196410939
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Sand
-  m_Shader: {fileID: -6465566751694194690, guid: c7672e51a5f784b478fb6127e966822d, type: 3}
+  m_Name: ToonRevised
+  m_Shader: {fileID: -6465566751694194690, guid: 59397363e4a473e4caadc650b0f4bae1, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -49,10 +49,6 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -67,36 +63,19 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _BlendMode: 0
-    - _CoreWidth: 0.12
-    - _Detail: 5
     - _FloorBlendAmount: 0.1
     - _FloorHeight: 0
     - _FloorOffset: 0
-    - _GlowFalloff: 2
-    - _GroundedContrast: 1
-    - _Intensity: 4
-    - _LayerBalance: 0.57
-    - _ParticulateAngle: 10.41
-    - _ParticulateScale: 69.87
-    - _ParticulateStrength: 7.4
-    - _ParticulateThreshold: 0.88
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _SandWobble: 0.03
-    - _Scale: 3
-    - _Speed: 1
     - _Stable: 1
-    - _Thickness: 0.06
-    - _Threshold: 0.65
-    - _Turbulence: 2
-    - _WaveSize: 1
-    - _WaveXFrequency: 2
-    - _WaveYFrequency: 5
-    - _shake: 0
+    - _bands: 1.5
+    - _groundmask: 0.51
+    - _highlightthreshold: 0.65
+    - _shake: 1
     - _shakeAmount: 0.0075
     - _shakeFrequency: 75
     m_Colors:
-    - _Color: {r: 0.39999998, g: 0.9, b: 1, a: 1}
+    - _Tint: {r: 0.8301887, g: 0.3524385, b: 0.616443, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
