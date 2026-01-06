@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 059b394dc3b9e3d4f9f0b43cecd48445, type: 3}
-  m_Name: CrystalOverrides
+  m_Name: BasicShaderOverrides
   m_EditorClassIdentifier: Assembly-CSharp::MaterialPropertyOverrides
   overrides:
-  - propertyName: _GroundedTint
-    propertyType: 4
-    colorValue: {r: 1, g: 0.7333321, b: 0, a: 1}
+  - propertyName: 
+    propertyType: 0
+    colorValue: {r: 0, g: 0, b: 0, a: 0}
     floatValue: 0
     intValue: 0
     vectorValue: {x: 0, y: 0, z: 0, w: 0}
