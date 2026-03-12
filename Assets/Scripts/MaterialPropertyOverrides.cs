@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-[CreateAssetMenu(fileName = "StructurePropertyOverride", menuName = "Advanced Structure Skins/Overrides")]
+[CreateAssetMenu(fileName = "StructurePropertyOverride", menuName = "Advanced Structure Skins/Structure Property Overrides")]
 public class MaterialPropertyOverrides : ScriptableObject
 {
     public List<MaterialPropertyOverride> overrides = new();

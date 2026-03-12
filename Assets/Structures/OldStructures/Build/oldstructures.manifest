@@ -1,0 +1,37 @@
+ManifestFileVersion: 0
+UnityVersion: 6000.2.1f1
+CRC: 3193610253
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: e983e50593e15dd54ade065668d37556
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 3b8b629cd512abe03f70b0cd411ce10b
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 7e7d4e3f2771062531c7e1b37a164177
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/Structures/OldStructures/RockCube.fbx
+- Assets/Structures/OldStructures/Wall.fbx
+- Assets/Structures/OldStructures/Disc.fbx
+- Assets/Structures/OldStructures/Pillar.fbx
+- Assets/Structures/OldStructures/Ball.fbx
+Dependencies: []
