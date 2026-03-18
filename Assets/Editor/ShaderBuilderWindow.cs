@@ -222,7 +222,10 @@ public class ShaderBuilderWindow : EditorWindow
             }
         }
 
-        File.WriteAllText(Path.Combine(Application.dataPath, "Temp/structure_overrides.txt"), data);
+        if (!Directory.Exists(Path.Combine(Application.dataPath, path)))
+            Directory.CreateDirectory(Path.GetDirectoryName(Path.Combine(Application.dataPath, path)));
+        
+        File.WriteAllText(Path.Combine(Application.dataPath, path), data);
     }
     
     private void Build()
@@ -242,6 +245,7 @@ public class ShaderBuilderWindow : EditorWindow
         
         if (overridesAsset != null)
         {
+            
             string dataPath = "Temp/structure_overrides.txt";
             ExportOverridesData(overridesAsset, dataPath);
             AssetDatabase.ImportAsset(Path.Combine("Assets", dataPath));
