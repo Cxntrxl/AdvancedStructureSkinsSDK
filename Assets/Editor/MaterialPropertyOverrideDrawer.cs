@@ -52,9 +52,20 @@ public class MaterialPropertyOverrideDrawer : PropertyDrawer
                 break;
 
             case ShaderPropertyType.Vector:
-                EditorGUI.PropertyField(line, vectorValue);
-                line.y += line.height + spacing;
+            {
+                EditorGUI.BeginChangeCheck();
+
+                Vector4 value = vectorValue.vector4Value;
+                value = EditorGUI.Vector4Field(line, "Vector", value);
+
+                if (EditorGUI.EndChangeCheck())
+                {
+                    vectorValue.vector4Value = value;
+                }
+
+                line.y += (EditorGUIUtility.singleLineHeight + spacing) * 2;
                 break;
+            }
         }
 
         EditorGUI.PropertyField(line, targetStructures, true);
