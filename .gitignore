@@ -75,3 +75,7 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+Assets/Temp.meta
+Assets/Temp/structure_overrides.txt
+Assets/Temp/structure_overrides.txt.meta
+/Assets/Scenes

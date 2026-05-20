@@ -1,6 +1,5 @@
 using UnityEditor;
 using UnityEngine;
-using UnityEditor;
 using UnityEngine.Rendering;
 
 [CustomPropertyDrawer(typeof(MaterialPropertyOverride))]
