@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1297397390, guid: 048abc7371826224f97c40ca68ed717c, type: 3}
+  m_Name: GreenScreen
+  m_EditorClassIdentifier: AdvancedStructureSkins.Shared.dll::AdvancedStructureSkins.Shared.SDK.SkinManifest
+  skinName: Green Screen
+  material: {fileID: 2100000, guid: 93a76628fcf7ecf41b918b0ca6cc47b9, type: 2}
+  previewTexture: {fileID: 2800000, guid: dfdac9f12bfae4d4e993951fdd2fa74e, type: 3}
+  allowedInComp: 1
+  overrides: []
+  textures: []

@@ -1,285 +1,283 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Runtime.CompilerServices;
+using AdvancedStructureSkins.Shared.SDK;
+using AdvancedStructureSkins.Shared.SDK.Binary;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 public class ShaderBuilderWindow : EditorWindow
 {
     private string bundleName = "custombundle";
     private string outputPath = "";
-    private BuildTarget buildTarget = BuildTarget.StandaloneWindows64;
-    private Shader shader;
-    private Material material;
-    private Editor materialEditor;
-    private MaterialPropertyOverrides overridesAsset;
-    private SerializedObject overridesSerialized;
-    private Vector2 overridesScroll;
     
-    [MenuItem("Tools/Shader Asset Bundle Builder")]
+    private SkinManifest skinManifest;
+    private Editor manifestEditor;
+    
+    private Vector2 scroll;
+
+    [MenuItem("Tools/ASS Asset Bundle Builder")]
     public static void ShowWindow()
     {
-        var w = GetWindow<ShaderBuilderWindow>("Shader Asset Bundle Builder");
+        var w = GetWindow<ShaderBuilderWindow>("ASS Asset Bundle Builder");
         w.minSize = new Vector2(500, 500);
     }
-    
+
     private void OnEnable()
     {
-        buildTarget = EditorUserBuildSettings.activeBuildTarget;
-        if (string.IsNullOrEmpty(outputPath))
-            outputPath = System.IO.Path.Combine(Application.dataPath, "../AssetBundles");
+        if (!string.IsNullOrEmpty(outputPath)) return;
+        
+        outputPath = EditorPrefs.HasKey("ASS_ASBOutputPath") 
+            ? EditorPrefs.GetString("ASS_ASBOutputPath") 
+            : Path.Combine(Application.dataPath, "AssetBundles");
     }
 
     private void OnGUI()
     {
         EditorGUILayout.LabelField("Advanced Structure Skins Asset Bundle Builder", EditorStyles.boldLabel);
         EditorGUILayout.Space();
+        
+        scroll = EditorGUILayout.BeginScrollView(scroll);
 
+        DrawSkinManifest();
+
+        EditorGUILayout.EndScrollView();
+        
+        DrawBottomPanel();
+    }
+
+    private void DrawSkinManifest()
+    {
         EditorGUILayout.BeginVertical("box");
-        EditorGUILayout.LabelField("Shader", EditorStyles.label);
-        shader = (Shader)EditorGUILayout.ObjectField(shader, typeof(Shader), false);
-
-        if (shader == null)
-        {
-            EditorGUILayout.HelpBox("Please assign a shader for your skin.", MessageType.Warning);
-        }
         
-        EditorGUILayout.EndVertical();
-        
-        EditorGUILayout.BeginVertical("box");
-        EditorGUILayout.LabelField("Material", EditorStyles.label);
-        material = (Material)EditorGUILayout.ObjectField(material, typeof(Material), false);
-        
-        if (material == null)
-        {
-            EditorGUILayout.HelpBox("Please assign a material for your skin.", MessageType.Warning);
-        }
-        
-        EditorGUILayout.EndVertical();
-
-        EditorGUILayout.BeginVertical("box");
-        EditorGUILayout.LabelField("Material Preview", EditorStyles.label);
-        if (material != null)
-        {
-            if (materialEditor == null || materialEditor.target != material)
-            {
-                DestroyImmediate(materialEditor);
-                materialEditor = Editor.CreateEditor(material);
-            }
-            
-            materialEditor.OnInspectorGUI();
-
-            GUILayout.Space(10);
-
-            Rect previewRect = GUILayoutUtility.GetRect(128, 128, GUILayout.ExpandWidth(true));
-            materialEditor.OnPreviewGUI(previewRect, EditorStyles.helpBox);
-        }
-        EditorGUILayout.EndVertical();
-
-        EditorGUILayout.Space();
-        DrawOverrides();
-        EditorGUILayout.Space();
-
-        bundleName = EditorGUILayout.TextField("Skin Name", bundleName);
-        
-        // I removed the buildTarget functionality from the shader builder to make things
-        // more accessible to 90% of players.
-        // If the StandaloneWindows64 does not work for you (potentially linux users?),
-        // you can un-comment this code, and it'll add a build target field to the builder.
-        
-        /*EditorGUILayout.BeginHorizontal();
-        EditorGUILayout.LabelField("Build Target", GUILayout.Width(80));
-        buildTarget = (BuildTarget)EditorGUILayout.EnumPopup(buildTarget);
-        EditorGUILayout.EndHorizontal();*/
+        EditorGUILayout.LabelField("Skin Manifest", EditorStyles.boldLabel);
         
         EditorGUILayout.BeginHorizontal();
-        EditorGUILayout.LabelField("Output Path", GUILayout.Width(80));
-        EditorGUILayout.SelectableLabel(outputPath, GUILayout.Height(16));
+
+        EditorGUILayout.PrefixLabel("Manifest");
+
+        if (GUILayout.Button("Create", GUILayout.Width(80)))
+        {
+            CreateSkinManifestAsset();
+        }
+        
+        skinManifest = (SkinManifest)EditorGUILayout.ObjectField(
+            skinManifest,
+            typeof(SkinManifest),
+            false
+        );
+
+        EditorGUILayout.EndHorizontal();
+
+        if (skinManifest == null)
+        {
+            EditorGUILayout.EndVertical();
+            return;
+        }
+
+        if (manifestEditor == null || manifestEditor.target != skinManifest)
+        {
+            DestroyImmediate(manifestEditor);
+            manifestEditor = Editor.CreateEditor(skinManifest);
+        }
+
+        manifestEditor.OnInspectorGUI();
+
+        EditorGUILayout.Space();
+        EditorGUILayout.EndVertical();
+    }
+    
+    private void DrawBottomPanel()
+    {
+        EditorGUILayout.BeginVertical("box");
+
+        EditorGUILayout.BeginHorizontal();
+
+        EditorGUILayout.PrefixLabel("Output Path");
 
         if (GUILayout.Button("Browse", GUILayout.Width(80)))
         {
-            string chosen = EditorUtility.SaveFolderPanel("Choose Output Folder for Shader Assetbundle", outputPath, "");
-            if (!string.IsNullOrEmpty(chosen)) outputPath = chosen;
+            string chosen = EditorUtility.SaveFolderPanel("Output Folder", outputPath, "");
+            if (!string.IsNullOrEmpty(chosen))
+            {
+                outputPath = chosen;
+                EditorPrefs.SetString("ASS_ASBOutputPath", outputPath);
+            }
         }
+        
+        outputPath = EditorGUILayout.TextField(outputPath);
+
         EditorGUILayout.EndHorizontal();
-
-        EditorGUILayout.Space();
-        if (GUILayout.Button("Build", GUILayout.Height(40)))
-        {
-            if (shader == null || material == null)
-            {
-                EditorUtility.DisplayDialog("Assign Assets", "Assign all assets before building.", "OK");
-            }
-            else if (string.IsNullOrEmpty(outputPath))
-            {
-                EditorUtility.DisplayDialog("Output Folder", "Please choose an output folder.", "OK");
-            }
-            else
-            {
-                Build();
-            }
-        }
         
-        EditorGUILayout.Space();
-        
-        EditorGUILayout.HelpBox("Build AssetBundles for your skins using this window. All shader bundles require a shader and a material reference to be fully compatible with Advanced Structure Skins or other mods depending on CustomShaders.", MessageType.Info);
-    }
+        bundleName = EditorGUILayout.TextField("File Name", bundleName);
 
-    private void DrawOverrides()
-    {
-        EditorGUILayout.BeginVertical("box");
-        EditorGUILayout.LabelField("Property Overrides", EditorStyles.boldLabel);
+        GUILayout.Space(5);
 
-        EditorGUILayout.BeginHorizontal();
-        overridesAsset = (MaterialPropertyOverrides)EditorGUILayout.ObjectField(
-            "Overrides Asset", overridesAsset, typeof(MaterialPropertyOverrides), false);
-
-        if (overridesAsset == null)
+        if (GUILayout.Button("Build .asb", GUILayout.Height(40)))
         {
-            if (GUILayout.Button("Create"))
-            {
-                overridesAsset = CreateInstance<MaterialPropertyOverrides>();
-                string path = EditorUtility.SaveFilePanelInProject("Save Overrides Asset", "Overrides", "asset",
-                    "Save your overrides asset.");
-                if (!string.IsNullOrEmpty(path))
-                {
-                    AssetDatabase.CreateAsset(overridesAsset, path);
-                    AssetDatabase.SaveAssets();
-                }
-            }
-            EditorGUILayout.EndHorizontal();
-            EditorGUILayout.EndVertical();
-            return;
-        } else { EditorGUILayout.EndHorizontal(); }
-        
-        if (overridesSerialized == null || overridesSerialized.targetObject != overridesAsset)
-            overridesSerialized = new SerializedObject(overridesAsset);
-
-        overridesSerialized.Update();
-
-        GUILayoutOption[] scrollOptions = new GUILayoutOption[] { GUILayout.ExpandHeight(true), GUILayout.MaxHeight(500) };
-        overridesScroll = EditorGUILayout.BeginScrollView(overridesScroll, scrollOptions);
-        SerializedProperty list = overridesSerialized.FindProperty("overrides");
-        EditorGUILayout.PropertyField(list, includeChildren: true);
-        EditorGUILayout.EndScrollView();
-
-        if (GUILayout.Button("Add Override"))
-        {
-            overridesAsset.overrides.Add(new MaterialPropertyOverride());
+            Build();
         }
 
-        if (GUILayout.Button("Remove All Overrides"))
-        {
-            if (EditorUtility.DisplayDialog("Clear Overrides",
-                    "Are you sure you want to remove all property overrides? \nIf your asset is not built, this cannot be undone.",
-                    "Yes", "No"))
-                overridesAsset.overrides.Clear();
-        }
+        GUILayout.Space(5);
 
-        overridesSerialized.ApplyModifiedProperties();
+        EditorGUILayout.HelpBox("Build AssetBundles for Advanced Structure Skins.\n" +
+                                "Each bundle contains a SkinManifest which defines materials, overrides and texture sets.\n" +
+                                "Hover over a given field for more information.", MessageType.Info);
+
         EditorGUILayout.EndVertical();
     }
     
-    private void ExportOverridesData(MaterialPropertyOverrides so, string path)
+    private void CreateSkinManifestAsset()
     {
-        string data = "";
-        foreach (MaterialPropertyOverride o in so.overrides)
+        SkinManifest asset = ScriptableObject.CreateInstance<SkinManifest>();
+
+        string path = EditorUtility.SaveFilePanelInProject(
+            "Create Skin Manifest",
+            "NewSkinManifest",
+            "asset",
+            "Choose where to save the Skin Manifest asset."
+        );
+
+        if (string.IsNullOrEmpty(path))
+            return;
+
+        AssetDatabase.CreateAsset(asset, path);
+        AssetDatabase.SaveAssets();
+        AssetDatabase.Refresh();
+
+        skinManifest = AssetDatabase.LoadAssetAtPath<SkinManifest>(path);
+
+        if (skinManifest != null)
         {
-            data += o.propertyName + "|";
-            data += (int)o.propertyType + "|";
-            switch (o.propertyType)
-            {
-                case ShaderPropertyType.Color:
-                    data += o.colorValue.r + "|";
-                    data += o.colorValue.g + "|";
-                    data += o.colorValue.b + "|";
-                    data += o.colorValue.a + "|";
-                    break;
-                case ShaderPropertyType.Float:
-                    data += o.floatValue + "|";
-                    break;
-                case ShaderPropertyType.Range:
-                    data += o.floatValue + "|";
-                    break;
-                case ShaderPropertyType.Int:
-                    data += o.intValue + "|";
-                    break;
-                case ShaderPropertyType.Vector:
-                    data += o.vectorValue.x + "|";
-                    data += o.vectorValue.y + "|";
-                    data += o.vectorValue.z + "|";
-                    data += o.vectorValue.w + "|";
-                    break;
-            }
-
-            data += o.targetStructures.Count + "|";
-            
-            foreach (StructureType type in o.targetStructures)
-            {
-                data += (int)type + "|";
-            }
+            Selection.activeObject = skinManifest;
+            EditorGUIUtility.PingObject(skinManifest);
         }
-
-        if (!Directory.Exists(Path.Combine(Application.dataPath, path)))
-            Directory.CreateDirectory(Path.GetDirectoryName(Path.Combine(Application.dataPath, path)));
-        
-        File.WriteAllText(Path.Combine(Application.dataPath, path), data);
     }
-    
+
     private void Build()
     {
-        System.IO.Directory.CreateDirectory(outputPath);
+        Directory.CreateDirectory(outputPath);
 
-        AssetBundleBuild[] builds = new AssetBundleBuild[1];
-        
-        List<string> assetPaths = new List<string>();
-        List<string> addressableNames = new List<string>();
+        string tempDir = "Assets/Temp";
 
-        assetPaths.Add(AssetDatabase.GetAssetPath(shader));
-        addressableNames.Add("shader");
+        if (!Directory.Exists(tempDir))
+            Directory.CreateDirectory(tempDir);
         
-        assetPaths.Add(AssetDatabase.GetAssetPath(material));
-        addressableNames.Add("material");
-        
-        if (overridesAsset != null)
+        byte[] manifestBytes = BinaryHandler.Write(skinManifest);
+
+        string manifestPath = Path.Combine(tempDir, $"{skinManifest.skinName}_manifest.bytes");
+        File.WriteAllBytes(manifestPath, manifestBytes);
+
+        AssetDatabase.ImportAsset(manifestPath);
+
+        TextAsset manifestAsset = AssetDatabase.LoadAssetAtPath<TextAsset>(manifestPath);
+
+        if (manifestAsset == null)
         {
-            
-            string dataPath = "Temp/structure_overrides.txt";
-            ExportOverridesData(overridesAsset, dataPath);
-            AssetDatabase.ImportAsset(Path.Combine("Assets", dataPath));
-            
-            TextAsset textAsset = AssetDatabase.LoadAssetAtPath<TextAsset>(Path.Combine("Assets", dataPath));
-            
-            assetPaths.Add(AssetDatabase.GetAssetPath(textAsset));
-            addressableNames.Add("overrides");
+            Debug.LogError("Failed to create manifest TextAsset.");
+            return;
         }
         
-        var abb = new AssetBundleBuild
+        HashSet<Texture> texturesToInclude = new HashSet<Texture>();
+
+        if (skinManifest.overrides != null)
         {
-            assetBundleName = bundleName + ".bundle",
+            foreach (var o in skinManifest.overrides)
+            {
+                if (o.textureValue != null)
+                    texturesToInclude.Add(o.textureValue);
+            }
+        }
+
+        if (skinManifest.textures != null)
+        {
+            foreach (var set in skinManifest.textures)
+            {
+                if (set.textures == null) continue;
+
+                if (set.previewTexture != null)
+                    texturesToInclude.Add(set.previewTexture);
+                
+                foreach (var entry in set.textures)
+                {
+                    if (entry?.textures == null) continue;
+
+                    foreach (var tex in entry.textures)
+                    {
+                        if (tex != null)
+                            texturesToInclude.Add(tex);
+                    }
+                }
+            }
+        }
+        
+        if (skinManifest.previewTexture != null)
+            texturesToInclude.Add(skinManifest.previewTexture);
+
+        var assetPaths = new List<string>
+        {
+            manifestPath
+        };
+
+        var addressableNames = new List<string>
+        {
+            "manifest"
+        };
+
+        foreach (var tex in texturesToInclude)
+        {
+            string path = AssetDatabase.GetAssetPath(tex);
+
+            if (string.IsNullOrEmpty(path))
+            {
+                Debug.LogWarning($"Texture '{tex.name}' is not an asset and will be skipped.");
+                continue;
+            }
+
+            assetPaths.Add(path);
+            addressableNames.Add(tex.name);
+        }
+
+        if (skinManifest.material != null)
+        {
+            assetPaths.Add(AssetDatabase.GetAssetPath(skinManifest.material));
+            addressableNames.Add(skinManifest.material.name);
+        }
+
+        var build = new AssetBundleBuild
+        {
+            assetBundleName = bundleName + ".asb",
             assetNames = assetPaths.ToArray(),
             addressableNames = addressableNames.ToArray()
         };
-        builds[0] = abb;
 
         try
         {
-            EditorUtility.DisplayProgressBar("Building AssetBundles", "Preparing...", 0.1f);
+            EditorUtility.DisplayProgressBar("Building ASB", "Building asset bundle...", 0.3f);
 
-            BuildPipeline.BuildAssetBundles(outputPath, builds, BuildAssetBundleOptions.ForceRebuildAssetBundle, buildTarget);
+            BuildPipeline.BuildAssetBundles(
+                outputPath,
+                new[] { build },
+                BuildAssetBundleOptions.ForceRebuildAssetBundle,
+                BuildTarget.StandaloneWindows64
+            );
+
             CleanupExtraBuildFiles();
-            
+
             EditorUtility.ClearProgressBar();
             AssetDatabase.Refresh();
-            EditorUtility.DisplayDialog("Build Complete", "AssetBundles built to:\n" + outputPath, "OK");
+
+            EditorUtility.DisplayDialog(
+                "Build Complete",
+                "ASB built successfully:\n" + outputPath,
+                "OK"
+            );
         }
-        catch (Exception ex)
+        catch (Exception e)
         {
             EditorUtility.ClearProgressBar();
-            Debug.LogException(ex);
-            EditorUtility.DisplayDialog("Build Failed", ex.Message, "OK");
+            Debug.LogException(e);
+            EditorUtility.DisplayDialog("Build Failed", e.Message, "OK");
         }
     }
 

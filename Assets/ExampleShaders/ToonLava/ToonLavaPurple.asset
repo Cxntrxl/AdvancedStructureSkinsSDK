@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1297397390, guid: 048abc7371826224f97c40ca68ed717c, type: 3}
+  m_Name: ToonLavaPurple
+  m_EditorClassIdentifier: AdvancedStructureSkins.Shared.dll::AdvancedStructureSkins.Shared.SDK.SkinManifest
+  skinName: Toon Lava Purple
+  material: {fileID: 2100000, guid: 001fb0d29684bd947ac430177a5c5ad2, type: 2}
+  previewTexture: {fileID: 2800000, guid: 438dabed13fc722489d88eaf12dd9563, type: 3}
+  allowedInComp: 1
+  overrides: []
+  textures: []

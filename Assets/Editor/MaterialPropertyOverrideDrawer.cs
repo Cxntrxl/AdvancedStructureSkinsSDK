@@ -1,3 +1,4 @@
+using AdvancedStructureSkins.Shared.SDK;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -9,7 +10,7 @@ public class MaterialPropertyOverrideDrawer : PropertyDrawer
     {
         EditorGUI.BeginProperty(position, label, property);
 
-        var line = new Rect(position.x, position.y, position.width, EditorGUIUtility.singleLineHeight);
+        float y = position.y;
         float spacing = EditorGUIUtility.standardVerticalSpacing;
 
         SerializedProperty propertyName = property.FindPropertyRelative("propertyName");
@@ -20,70 +21,100 @@ public class MaterialPropertyOverrideDrawer : PropertyDrawer
         SerializedProperty vectorValue = property.FindPropertyRelative("vectorValue");
         SerializedProperty targetStructures = property.FindPropertyRelative("targetStructures");
 
-        EditorGUI.PropertyField(line, propertyName);
-        line.y += line.height + spacing;
+        Rect line;
 
+        // Name
+        line = new Rect(position.x, y, position.width, EditorGUIUtility.singleLineHeight);
+        EditorGUI.PropertyField(line, propertyName);
+        y += line.height + spacing;
+
+        // Type
+        line.y = y;
         EditorGUI.PropertyField(line, propertyType);
-        line.y += line.height + spacing;
-        
+        y += line.height + spacing;
+
         ShaderPropertyType type = (ShaderPropertyType)propertyType.enumValueIndex;
+
+        // Value block
+        line.y = y;
 
         switch (type)
         {
             case ShaderPropertyType.Color:
                 EditorGUI.PropertyField(line, colorValue);
-                line.y += line.height + spacing;
+                y += EditorGUI.GetPropertyHeight(colorValue) + spacing;
                 break;
 
             case ShaderPropertyType.Float:
-                EditorGUI.PropertyField(line, floatValue);
-                line.y += line.height + spacing;
-                break;
-            
             case ShaderPropertyType.Range:
                 EditorGUI.PropertyField(line, floatValue);
-                line.y += line.height + spacing;
+                y += EditorGUI.GetPropertyHeight(floatValue) + spacing;
                 break;
 
             case ShaderPropertyType.Int:
                 EditorGUI.PropertyField(line, intValue);
-                line.y += line.height + spacing;
+                y += EditorGUI.GetPropertyHeight(intValue) + spacing;
                 break;
 
             case ShaderPropertyType.Vector:
-            {
-                EditorGUI.BeginChangeCheck();
+                vectorValue.vector4Value =
+                    EditorGUI.Vector4Field(line, "Vector", vectorValue.vector4Value);
 
-                Vector4 value = vectorValue.vector4Value;
-                value = EditorGUI.Vector4Field(line, "Vector", value);
-
-                if (EditorGUI.EndChangeCheck())
-                {
-                    vectorValue.vector4Value = value;
-                }
-
-                line.y += (EditorGUIUtility.singleLineHeight + spacing) * 2;
+                y += EditorGUI.GetPropertyHeight(vectorValue) + spacing;
                 break;
-            }
         }
 
-        EditorGUI.PropertyField(line, targetStructures, true);
+        // Target structures (IMPORTANT: correct height usage)
+        line.y = y;
+        float targetHeight = EditorGUI.GetPropertyHeight(targetStructures, true);
+        EditorGUI.PropertyField(new Rect(line.x, line.y, line.width, targetHeight), targetStructures, true);
 
         EditorGUI.EndProperty();
     }
 
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
     {
+        SerializedProperty propertyName = property.FindPropertyRelative("propertyName");
         SerializedProperty propertyType = property.FindPropertyRelative("propertyType");
+        SerializedProperty colorValue = property.FindPropertyRelative("colorValue");
+        SerializedProperty floatValue = property.FindPropertyRelative("floatValue");
+        SerializedProperty intValue = property.FindPropertyRelative("intValue");
+        SerializedProperty vectorValue = property.FindPropertyRelative("vectorValue");
         SerializedProperty targetStructures = property.FindPropertyRelative("targetStructures");
 
-        int lines = 2;
+        float spacing = EditorGUIUtility.standardVerticalSpacing;
+        float height = 0f;
+
+        // name
+        height += EditorGUIUtility.singleLineHeight + spacing;
+
+        // type
+        height += EditorGUIUtility.singleLineHeight + spacing;
 
         ShaderPropertyType type = (ShaderPropertyType)propertyType.enumValueIndex;
-        if (type != ShaderPropertyType.Texture)
-            lines++;
 
-        float height = lines * (EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing);
+        // value field
+        switch (type)
+        {
+            case ShaderPropertyType.Color:
+                height += EditorGUI.GetPropertyHeight(colorValue) + spacing;
+                break;
+
+            case ShaderPropertyType.Float:
+            case ShaderPropertyType.Range:
+                height += EditorGUI.GetPropertyHeight(floatValue) + spacing;
+                break;
+
+            case ShaderPropertyType.Int:
+                height += EditorGUI.GetPropertyHeight(intValue) + spacing;
+                break;
+
+            case ShaderPropertyType.Vector:
+                height += EditorGUI.GetPropertyHeight(vectorValue) + spacing;
+                break;
+        }
+
+        // target structures (foldout list)
         height += EditorGUI.GetPropertyHeight(targetStructures, true);
 
         return height;

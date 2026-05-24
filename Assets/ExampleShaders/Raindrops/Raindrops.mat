@@ -75,8 +75,8 @@ Material:
     - _shakeAmount: 0.0075
     - _shakeFrequency: 75
     m_Colors:
-    - _GroundedColor: {r: 0.3584906, g: 0.3105791, b: 0.26266763, a: 1}
+    - _GroundedColor: {r: 0.42767292, g: 0.3920335, b: 0.35639408, a: 1}
     - _NoiseOffset: {r: -41.89, g: 8, b: 1.16, a: 0}
-    - _Tint: {r: 0.9490196, g: 0.8745098, b: 0.7333333, a: 1}
+    - _Tint: {r: 0.8301887, g: 0.76170784, b: 0.6500533, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

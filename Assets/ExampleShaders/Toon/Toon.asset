@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1297397390, guid: 048abc7371826224f97c40ca68ed717c, type: 3}
+  m_Name: Toon
+  m_EditorClassIdentifier: AdvancedStructureSkins.Shared.dll::AdvancedStructureSkins.Shared.SDK.SkinManifest
+  skinName: Toon
+  material: {fileID: 2100000, guid: 23c0a22216f181c468bdc74782d53689, type: 2}
+  previewTexture: {fileID: 2800000, guid: 7106af0fe8f925e4eb87d394f9971a0c, type: 3}
+  allowedInComp: 1
+  overrides:
+  - propertyName: _Tint
+    propertyType: 0
+    colorValue: {r: 0.69182384, g: 0.18927248, b: 0.21983291, a: 1}
+    floatValue: 0
+    intValue: 0
+    vectorValue: {x: 0, y: 0, z: 0, w: 0}
+    textureValue: {fileID: 0}
+    targetStructures: 1
+  - propertyName: _Tint
+    propertyType: 0
+    colorValue: {r: 0.76729554, g: 0.5134631, b: 0.13753402, a: 1}
+    floatValue: 0
+    intValue: 0
+    vectorValue: {x: 0, y: 0, z: 0, w: 0}
+    textureValue: {fileID: 0}
+    targetStructures: 2
+  - propertyName: _Tint
+    propertyType: 0
+    colorValue: {r: 0.5803922, g: 0.6745098, b: 0.2784314, a: 1}
+    floatValue: 0
+    intValue: 0
+    vectorValue: {x: 0, y: 0, z: 0, w: 0}
+    textureValue: {fileID: 0}
+    targetStructures: 4
+  - propertyName: _Tint
+    propertyType: 0
+    colorValue: {r: 0.21336168, g: 0.69491535, b: 0.72955966, a: 1}
+    floatValue: 0
+    intValue: 0
+    vectorValue: {x: 0, y: 0, z: 0, w: 0}
+    textureValue: {fileID: 0}
+    targetStructures: 8
+  - propertyName: _Tint
+    propertyType: 0
+    colorValue: {r: 0.34117648, g: 0.3372549, b: 0.72156864, a: 1}
+    floatValue: 0
+    intValue: 0
+    vectorValue: {x: 0, y: 0, z: 0, w: 0}
+    textureValue: {fileID: 0}
+    targetStructures: 16
+  - propertyName: _Tint
+    propertyType: 0
+    colorValue: {r: 0.6118142, g: 0.34458673, b: 0.8238993, a: 1}
+    floatValue: 0
+    intValue: 0
+    vectorValue: {x: 0, y: 0, z: 0, w: 0}
+    textureValue: {fileID: 0}
+    targetStructures: 64
+  - propertyName: _Tint
+    propertyType: 0
+    colorValue: {r: 0.899371, g: 0.3591827, b: 0.89351285, a: 1}
+    floatValue: 0
+    intValue: 0
+    vectorValue: {x: 0, y: 0, z: 0, w: 0}
+    textureValue: {fileID: 0}
+    targetStructures: 32
+  textures: []

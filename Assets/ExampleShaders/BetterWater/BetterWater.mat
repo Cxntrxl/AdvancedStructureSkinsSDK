@@ -55,14 +55,14 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _FloorBlendAmount: 0.1
+    - _FloorBlendAmount: 0.15
     - _FloorHeight: 0
     - _Floor_Offset: 0
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Smoothness: 0
-    - _Stable: 1
-    - _VoronoiScale: 0
+    - _Smoothness: 2
+    - _Stable: 0
+    - _VoronoiScale: 1.6
     - _shake: 0
     - _shakeAmount: 0.0075
     - _shakeFrequency: 75
