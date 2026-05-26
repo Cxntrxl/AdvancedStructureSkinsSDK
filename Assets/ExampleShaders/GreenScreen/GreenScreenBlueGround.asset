@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: GreenScreenBlueGround
   m_EditorClassIdentifier: AdvancedStructureSkins.Shared.dll::AdvancedStructureSkins.Shared.SDK.SkinManifest
   skinName: Green Screen (BG)
-  material: {fileID: 2100000, guid: ee1ee21e4dc4f824380f07e538cbeed4, type: 2}
   previewTexture: {fileID: 2800000, guid: 835ec1d5eee9aa349978483f480e9ddf, type: 3}
   allowedInComp: 1
-  overrides: []
+  shaders:
+  - material: {fileID: 2100000, guid: ee1ee21e4dc4f824380f07e538cbeed4, type: 2}
+    overrides: []
   textures: []

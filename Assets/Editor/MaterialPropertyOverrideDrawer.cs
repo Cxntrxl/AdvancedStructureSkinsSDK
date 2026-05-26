@@ -19,6 +19,7 @@ public class MaterialPropertyOverrideDrawer : PropertyDrawer
         SerializedProperty floatValue = property.FindPropertyRelative("floatValue");
         SerializedProperty intValue = property.FindPropertyRelative("intValue");
         SerializedProperty vectorValue = property.FindPropertyRelative("vectorValue");
+        SerializedProperty textureValue = property.FindPropertyRelative("textureValue");
         SerializedProperty targetStructures = property.FindPropertyRelative("targetStructures");
 
         Rect line;
@@ -55,6 +56,11 @@ public class MaterialPropertyOverrideDrawer : PropertyDrawer
                 EditorGUI.PropertyField(line, intValue);
                 y += EditorGUI.GetPropertyHeight(intValue) + spacing;
                 break;
+            
+            case ShaderPropertyType.Texture:
+                EditorGUI.PropertyField(line, textureValue);
+                y += EditorGUI.GetPropertyHeight(textureValue) + spacing;
+                break;
 
             case ShaderPropertyType.Vector:
                 vectorValue.vector4Value =
@@ -80,6 +86,7 @@ public class MaterialPropertyOverrideDrawer : PropertyDrawer
         SerializedProperty floatValue = property.FindPropertyRelative("floatValue");
         SerializedProperty intValue = property.FindPropertyRelative("intValue");
         SerializedProperty vectorValue = property.FindPropertyRelative("vectorValue");
+        SerializedProperty textureValue = property.FindPropertyRelative("textureValue");
         SerializedProperty targetStructures = property.FindPropertyRelative("targetStructures");
 
         float spacing = EditorGUIUtility.standardVerticalSpacing;
@@ -107,6 +114,10 @@ public class MaterialPropertyOverrideDrawer : PropertyDrawer
 
             case ShaderPropertyType.Int:
                 height += EditorGUI.GetPropertyHeight(intValue) + spacing;
+                break;
+            
+            case ShaderPropertyType.Texture:
+                height += EditorGUI.GetPropertyHeight(textureValue) + spacing;
                 break;
 
             case ShaderPropertyType.Vector:

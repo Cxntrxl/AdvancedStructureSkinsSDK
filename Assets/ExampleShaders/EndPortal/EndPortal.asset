@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: EndPortal
   m_EditorClassIdentifier: AdvancedStructureSkins.Shared.dll::AdvancedStructureSkins.Shared.SDK.SkinManifest
   skinName: End Portal
-  material: {fileID: 2100000, guid: 3396e89fda447084395cf86b302298b0, type: 2}
   previewTexture: {fileID: 2800000, guid: 1c95d55ff6f4bd540a7934929f5793a4, type: 3}
   allowedInComp: 1
-  overrides: []
+  shaders:
+  - material: {fileID: 2100000, guid: 3396e89fda447084395cf86b302298b0, type: 2}
+    overrides: []
   textures: []

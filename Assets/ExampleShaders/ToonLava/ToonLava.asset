@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: ToonLava
   m_EditorClassIdentifier: AdvancedStructureSkins.Shared.dll::AdvancedStructureSkins.Shared.SDK.SkinManifest
   skinName: Toon Lava
-  material: {fileID: 2100000, guid: dbf3eaf89c3516747b29ae6ad2ad5c4e, type: 2}
   previewTexture: {fileID: 2800000, guid: 659b67e9619d7c5429b815bfe66023cb, type: 3}
   allowedInComp: 1
-  overrides: []
+  shaders:
+  - material: {fileID: 2100000, guid: dbf3eaf89c3516747b29ae6ad2ad5c4e, type: 2}
+    overrides: []
   textures: []

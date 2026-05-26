@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Sand
   m_EditorClassIdentifier: AdvancedStructureSkins.Shared.dll::AdvancedStructureSkins.Shared.SDK.SkinManifest
   skinName: Sand
-  material: {fileID: 2100000, guid: e9de634b6fd47ce4f881b3cfcee80b28, type: 2}
   previewTexture: {fileID: 2800000, guid: d8ad65e403ae55e48a5904a218d9e1f0, type: 3}
   allowedInComp: 1
-  overrides: []
+  shaders:
+  - material: {fileID: 2100000, guid: e9de634b6fd47ce4f881b3cfcee80b28, type: 2}
+    overrides: []
   textures: []

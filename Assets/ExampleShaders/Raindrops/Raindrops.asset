@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Raindrops
   m_EditorClassIdentifier: AdvancedStructureSkins.Shared.dll::AdvancedStructureSkins.Shared.SDK.SkinManifest
   skinName: Rain
-  material: {fileID: 2100000, guid: a722956aca7b248429df94c5e78ee4a9, type: 2}
   previewTexture: {fileID: 2800000, guid: 591beb4057960d1439b430b568b3a37e, type: 3}
   allowedInComp: 1
-  overrides: []
+  shaders:
+  - material: {fileID: 2100000, guid: a722956aca7b248429df94c5e78ee4a9, type: 2}
+    overrides: []
   textures: []

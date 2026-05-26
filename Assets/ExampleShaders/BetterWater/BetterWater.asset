@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: BetterWater
   m_EditorClassIdentifier: AdvancedStructureSkins.Shared.dll::AdvancedStructureSkins.Shared.SDK.SkinManifest
   skinName: Water
-  material: {fileID: 2100000, guid: 3882dbd30ba6a804caae391091df0ffe, type: 2}
   previewTexture: {fileID: 2800000, guid: 5e2cfb9a482454546817a1eac8632561, type: 3}
   allowedInComp: 0
-  overrides: []
+  shaders:
+  - material: {fileID: 2100000, guid: 3882dbd30ba6a804caae391091df0ffe, type: 2}
+    overrides: []
   textures: []

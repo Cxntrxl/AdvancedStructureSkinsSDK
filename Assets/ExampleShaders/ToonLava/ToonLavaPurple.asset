@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: ToonLavaPurple
   m_EditorClassIdentifier: AdvancedStructureSkins.Shared.dll::AdvancedStructureSkins.Shared.SDK.SkinManifest
   skinName: Toon Lava Purple
-  material: {fileID: 2100000, guid: 001fb0d29684bd947ac430177a5c5ad2, type: 2}
   previewTexture: {fileID: 2800000, guid: 438dabed13fc722489d88eaf12dd9563, type: 3}
   allowedInComp: 1
-  overrides: []
+  shaders:
+  - material: {fileID: 2100000, guid: 001fb0d29684bd947ac430177a5c5ad2, type: 2}
+    overrides: []
   textures: []

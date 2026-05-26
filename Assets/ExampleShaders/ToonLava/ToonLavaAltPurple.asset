@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: ToonLavaAltPurple
   m_EditorClassIdentifier: AdvancedStructureSkins.Shared.dll::AdvancedStructureSkins.Shared.SDK.SkinManifest
   skinName: ToonLavaAltPurple
-  material: {fileID: 2100000, guid: cc9054a596798ed48887f62c0ff48a10, type: 2}
   previewTexture: {fileID: 2800000, guid: bb0b8efbe2b8ff2418457423cb181dc0, type: 3}
   allowedInComp: 1
-  overrides: []
+  shaders:
+  - material: {fileID: 2100000, guid: cc9054a596798ed48887f62c0ff48a10, type: 2}
+    overrides: []
   textures: []

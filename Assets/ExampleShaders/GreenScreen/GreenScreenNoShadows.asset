@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: GreenScreenNoShadows
   m_EditorClassIdentifier: AdvancedStructureSkins.Shared.dll::AdvancedStructureSkins.Shared.SDK.SkinManifest
   skinName: Green Screen (NS)
-  material: {fileID: 2100000, guid: 0be8ea7a296995c4e9939c9ac75cf912, type: 2}
   previewTexture: {fileID: 2800000, guid: dfdac9f12bfae4d4e993951fdd2fa74e, type: 3}
   allowedInComp: 1
-  overrides: []
+  shaders:
+  - material: {fileID: 2100000, guid: 0be8ea7a296995c4e9939c9ac75cf912, type: 2}
+    overrides: []
   textures: []

@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Magic
   m_EditorClassIdentifier: AdvancedStructureSkins.Shared.dll::AdvancedStructureSkins.Shared.SDK.SkinManifest
   skinName: Magic
-  material: {fileID: 2100000, guid: ccb22cad1ce25494dbdebb90ba8306ff, type: 2}
   previewTexture: {fileID: 2800000, guid: afbfc56313ed622409ec2c2fbb80f236, type: 3}
   allowedInComp: 1
-  overrides: []
+  shaders:
+  - material: {fileID: 2100000, guid: ccb22cad1ce25494dbdebb90ba8306ff, type: 2}
+    overrides: []
   textures: []

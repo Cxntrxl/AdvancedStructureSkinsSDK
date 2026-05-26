@@ -180,12 +180,18 @@ public class ShaderBuilderWindow : EditorWindow
         
         HashSet<Texture> texturesToInclude = new HashSet<Texture>();
 
-        if (skinManifest.overrides != null)
+        if (skinManifest.shaders != null)
         {
-            foreach (var o in skinManifest.overrides)
+            foreach (ShaderManifest sm in skinManifest.shaders)
             {
-                if (o.textureValue != null)
-                    texturesToInclude.Add(o.textureValue);
+                if (sm.overrides != null)
+                {
+                    foreach (var o in sm.overrides)
+                    {
+                        if (o.textureValue != null)
+                            texturesToInclude.Add(o.textureValue);
+                    }
+                }
             }
         }
 
@@ -238,10 +244,13 @@ public class ShaderBuilderWindow : EditorWindow
             addressableNames.Add(tex.name);
         }
 
-        if (skinManifest.material != null)
+        if (skinManifest.shaders != null)
         {
-            assetPaths.Add(AssetDatabase.GetAssetPath(skinManifest.material));
-            addressableNames.Add(skinManifest.material.name);
+            foreach (ShaderManifest sm in skinManifest.shaders)
+            {
+                assetPaths.Add(AssetDatabase.GetAssetPath(sm.material));
+                addressableNames.Add(sm.material.name);
+            }
         }
 
         var build = new AssetBundleBuild
