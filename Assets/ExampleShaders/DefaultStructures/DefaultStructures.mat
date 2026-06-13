@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-1891823049196410939
+--- !u!114 &-4228684734593665228
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ToonRevised
-  m_Shader: {fileID: -6465566751694194690, guid: 59397363e4a473e4caadc650b0f4bae1, type: 3}
+  m_Name: DefaultStructures
+  m_Shader: {fileID: -6465566751694194690, guid: 3903a60844e8d934abca79282c6b8647, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -38,14 +38,10 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - Texture2D_2058E65A:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 747bce80f4412bc4990c5b65620f08ce, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_3812B1EC:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - Texture2D_8F187FEF:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -63,19 +59,21 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _FloorBlendAmount: 0.1
     - _FloorHeight: 0
-    - _FloorOffset: 0
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Stable: 1
-    - _bands: 1.5
-    - _groundmask: 0.51
-    - _highlightthreshold: 0.65
+    - _groundNoiseMultiplier: 0.1
+    - _groundOffset: 1.03
+    - _groundPower: 13.5
+    - _lightInfluence: 4
+    - _shadowMax: 0.8
     - _shake: 0
     - _shakeAmount: 0.0075
     - _shakeFrequency: 75
     m_Colors:
-    - _Tint: {r: 0.6745098, g: 0.2784314, b: 0.5390555, a: 1}
+    - _baseColor: {r: 0.7019608, g: 0.5372549, b: 0.43137258, a: 1}
+    - _groundColor: {r: 0.61635214, g: 0.42228147, b: 0.30042318, a: 1}
+    - _lightingRemap: {r: 0.2, g: 0.4, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

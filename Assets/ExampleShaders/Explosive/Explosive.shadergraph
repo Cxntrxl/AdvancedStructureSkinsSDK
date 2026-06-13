@@ -1668,8 +1668,8 @@
     "m_ObjectId": "053e6c7b35ad4f73bf620542dd57b84f",
     "m_Title": "Vibrate when explode is active",
     "m_Position": {
-        "x": -2056.6669921875,
-        "y": -1464.6666259765625
+        "x": -2056.666748046875,
+        "y": -1464.666748046875
     }
 }
 
@@ -7394,7 +7394,7 @@
     "m_Title": "Blend Offsets",
     "m_Position": {
         "x": -653.3333740234375,
-        "y": -1096.0
+        "y": -1096.0001220703125
     }
 }
 
@@ -10632,7 +10632,7 @@
     "m_ObjectId": "dd0356cf939f4a0296b6f7b8f0f49195",
     "m_Title": "Standard hitstop shake",
     "m_Position": {
-        "x": -1578.6669921875,
+        "x": -1578.666748046875,
         "y": -885.3333129882813
     }
 }
@@ -11700,7 +11700,7 @@
     "m_Hidden": false,
     "m_ShaderOutputName": "Smoothness",
     "m_StageCapability": 2,
-    "m_Value": 0.5,
+    "m_Value": 0.10000000149011612,
     "m_DefaultValue": 0.5,
     "m_Labels": []
 }

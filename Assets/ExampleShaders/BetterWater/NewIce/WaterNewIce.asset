@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1297397390, guid: 048abc7371826224f97c40ca68ed717c, type: 3}
+  m_Name: WaterNewIce
+  m_EditorClassIdentifier: AdvancedStructureSkins.Shared.dll::AdvancedStructureSkins.Shared.SDK.SkinManifest
+  skinName: Water New Ice
+  previewTexture: {fileID: 2800000, guid: 35add5c037d438a40be81df4be6929c9, type: 3}
+  allowedInComp: 0
+  shaders:
+  - material: {fileID: 2100000, guid: 08b0a32b78bbbd4428a341c4ad327324, type: 2}
+    overrides:
+    - propertyName: _crackMask
+      propertyType: 4
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      floatValue: 0
+      intValue: 0
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 2800000, guid: 378e9a60d600f924caae98304d8a7f86, type: 3}
+      targetStructures: 1
+    - propertyName: _crackMask
+      propertyType: 4
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      floatValue: 0
+      intValue: 0
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 2800000, guid: d238ad5f6f011b7469dd33291a75589f, type: 3}
+      targetStructures: 2
+    - propertyName: _crackMask
+      propertyType: 4
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      floatValue: 0
+      intValue: 0
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 2800000, guid: caadb7a18ad6e7a4fbe4319f238dd487, type: 3}
+      targetStructures: 4
+    - propertyName: _crackMask
+      propertyType: 4
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      floatValue: 0
+      intValue: 0
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 2800000, guid: b1f4b6f3fefed2644a45ee3406b1e4fe, type: 3}
+      targetStructures: 8
+    - propertyName: _crackMask
+      propertyType: 4
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      floatValue: 0
+      intValue: 0
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 2800000, guid: d65583c84b56cea4bbb838abe889589b, type: 3}
+      targetStructures: 16
+    - propertyName: _crackMask
+      propertyType: 4
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      floatValue: 0
+      intValue: 0
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 2800000, guid: 2211410a45960df458ad3a1a6dc79ce6, type: 3}
+      targetStructures: 32
+    - propertyName: _crackMask
+      propertyType: 4
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      floatValue: 0
+      intValue: 0
+      vectorValue: {x: 0, y: 0, z: 0, w: 0}
+      textureValue: {fileID: 2800000, guid: 40eaafc098e41ac469ad6e071f73a316, type: 3}
+      targetStructures: 64
+  textures: []
